@@ -40,8 +40,8 @@ function longestSubarray(arr) {
     return result;
 }
 
-const arr = [5,1,2,3,4,5]
-console.log(longestSubarray(arr))
+// const arr = [5,1,2,3,4,5]
+// console.log(longestSubarray(arr))
 
 
 function possibleChanges(usernames) {
@@ -67,5 +67,37 @@ function possibleChanges(usernames) {
     return result;
 }
 
-const arra = ['hydra']
+// const arra = ['hydra']
 // console.log(possibleChanges(arra))
+
+function interQuartile(values, freqs) {
+    // Print your answer to 1 decimal place within this function
+    let arr = [];
+    for (let i = 0; i < values.length; i++) {
+        let el = values[i];
+        for (let j = 0; j < freqs[i]; j++) {
+            arr.push(el)
+        }
+    }
+    arr.sort(function (a, b) { return a - b })
+    let left = arr.slice(0, Math.floor(arr.length / 2));
+    let right = arr.slice(Math.ceil(arr.length / 2));
+    const median = (array) => {
+        let m = 0;
+        if (array.length % 2 === 0) {
+            m = array[array.length / 2 - 1] + array[array.length / 2]
+            return Number((m / 2).toFixed(1));
+        } else {
+            m = array[Math.floor(array.length / 2)]
+            return Number(m.toFixed(1));
+        }
+        
+    }
+    console.log(arr.length)
+    console.log((median(right) - median(left)).toFixed(1))
+
+}
+
+// const v = [10, 40, 30, 50, 20, 10, 40, 30, 50, 20, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 10, 40, 30, 50, 20, 10, 40, 30, 50]
+// const f = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 40, 30, 50, 20, 10, 40, 30, 50, 20]
+// interQuartile(v,f)
