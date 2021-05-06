@@ -101,3 +101,18 @@ function interQuartile(values, freqs) {
 // const v = [10, 40, 30, 50, 20, 10, 40, 30, 50, 20, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 10, 40, 30, 50, 20, 10, 40, 30, 50]
 // const f = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 40, 30, 50, 20, 10, 40, 30, 50, 20]
 // interQuartile(v,f)
+
+const getMaxLessThanK = (n, k) => {
+    let result = 0;
+    for (let i = 1; i < n; i++) {
+        for (let j = i + 1; j <= n; j++) {
+            if ((i ^ j) < k && (i ^ j) > result) {
+                result = i ^ j
+            }
+        }
+    }
+    return result;
+}
+
+// console.log(getMaxLessThanK(132,107))
+
