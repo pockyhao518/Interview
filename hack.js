@@ -116,3 +116,22 @@ const getMaxLessThanK = (n, k) => {
 
 // console.log(getMaxLessThanK(132,107))
 
+function toBiny(num) {
+    let n = Math.floor(Math.log(num) / Math.log(2));
+    let biny = '';
+    if (num === 0){
+        return '0'
+    }
+    while (num != 0) {
+        if (num - (2 ** n) >= 0){
+            biny += 1;
+            num -= (2 ** n);
+        }else{
+            biny += 0;
+        }
+        n--;
+    }
+    return biny;
+}
+
+// console.log(toBiny(125))
