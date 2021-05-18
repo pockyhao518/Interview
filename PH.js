@@ -26,4 +26,4 @@ const costs = [
     [2, 9, 4]  // 1
 ];
 
-// console.log(minCostII(costs));
+console.log(minCostII(costs));
