@@ -134,4 +134,4 @@ function toBiny(num) {
     return biny;
 }
 
-// console.log(toBiny(125))
+console.log(toBiny(125))
