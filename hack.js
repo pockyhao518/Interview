@@ -134,4 +134,21 @@ function toBiny(num) {
     return biny;
 }
 
-console.log(toBiny(125))
+// console.log(toBiny(125))
+
+const subset = (nums) => {
+    if (nums.length === 0) {
+        return [];
+    }
+    if (nums.length === 1) {
+        return [[], nums]
+    }
+    let last = nums[nums.length - 1];
+    let arr = subset(nums.slice(0, nums.length - 1));
+    // let sub = subset(nums.slice(0, nums.length - 1));
+    // sub.map(el => el.push(last))
+    let sub = arr.map(el => el.concat([last]))
+    return sub.concat(arr)
+}
+
+// console.log(subset([1,2]))
