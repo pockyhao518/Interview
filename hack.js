@@ -152,3 +152,22 @@ const subset = (nums) => {
 }
 
 // console.log(subset([1,2]))
+
+const getCharacters = (n) => 'abcdefghijklmnopqrstuvwxyz'.slice(0, n);
+
+// n = length
+// Time: O(n)
+const makePalindrome = (length, numUniqueChars) => {
+    const chars = getCharacters(numUniqueChars);
+
+    let palindrome = length % 2 === 1 ? chars[0] : '';
+    let charIdx = length % 2 === 1 ? 1 : 0;
+
+    while (palindrome.length < length) {
+        let char = chars[charIdx % chars.length];
+        palindrome = char + palindrome + char;
+        charIdx += 1
+    }
+
+    return palindrome;
+};
