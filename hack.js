@@ -171,3 +171,52 @@ const makePalindrome = (length, numUniqueChars) => {
 
     return palindrome;
 };
+
+const ladderLength = (beginWord, endWord, wordList) => {
+    if (!wordList.includes(beginWord)) wordList.push(beginWord);
+    const graph = buildGraph(wordList);
+    const queue = [{ word: beginWord, distance: 0 }];
+    const visited = new Set([beginWord]);
+
+    while (queue.length > 0) {
+        const { word, distance } = queue.shift();
+
+        if (word === endWord) return distance + 1;
+
+        const neighborWords = graph[word];
+        for (let neighborWord of neighborWords) {
+            if (!visited.has(neighborWord)) {
+                queue.push({ word: neighborWord, distance: distance + 1 });
+                visited.add(neighborWord);
+            }
+        }
+    }
+
+    return 0;
+};
+
+const buildGraph = (words) => {
+    const graph = {};
+    words.forEach(word => graph[word] = []);
+
+    for (let word1 of words) {
+        for (let word2 of words) {
+            if (oneLetterDiff(word1, word2)) {
+                graph[word1].push(word2);
+            }
+        }
+    }
+
+    return graph;
+};
+
+const oneLetterDiff = (s1, s2) => {
+    if (s1.length !== s2.length) return false;
+
+    let diffCount = 0;
+    for (let i = 0; i < s1.length; i += 1) {
+        if (s1[i] !== s2[i]) diffCount += 1;
+    }
+
+    return diffCount === 1;
+};
