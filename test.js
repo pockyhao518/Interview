@@ -51,3 +51,14 @@ function foo(){
 }
 foo()
 // console.log(name)
+
+// e = edges
+// n = nodes
+
+const countConnectedComponents = (edges) => {
+    const obj = {};
+    for (let edge of edges) {
+        const [nodeA, nodeB] = edge;
+        obj[nodeA] = nodeA;
+        obj[nodeB] = nodeB;
+    } // O(e)
