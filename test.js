@@ -62,3 +62,13 @@ const countConnectedComponents = (edges) => {
         obj[nodeA] = nodeA;
         obj[nodeB] = nodeB;
     } // O(e)
+    const union = (nodeA, nodeB) => {
+        // Join the group that A is in with the group that B is in
+        // find captainA
+        // find captainB
+        // make captainA follow captainB
+
+        const captainA = find(nodeA);
+        const captainB = find(nodeB);
+        obj[captainA] = captainB;
+    }; // O(n)
