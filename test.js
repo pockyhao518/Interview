@@ -72,3 +72,9 @@ const countConnectedComponents = (edges) => {
         const captainB = find(nodeB);
         obj[captainA] = captainB;
     }; // O(n)
+    const find = (node) => {
+        if (node === obj[node]) return node;
+        return find(obj[node]);
+        // Give back the captain of the group node is in
+        // via a depth first traversal
+    };// O(n)
