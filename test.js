@@ -78,3 +78,13 @@ const countConnectedComponents = (edges) => {
         // Give back the captain of the group node is in
         // via a depth first traversal
     };// O(n)
+    for (let edge of edges) {
+        union(...edge)
+    }; // O(en)
+
+    let captainCount = 0;
+    for (let node in obj) {
+        if (node === obj[node]) captainCount += 1;
+    } // O(n)
+    return captainCount;
+}; // O(en)
