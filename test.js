@@ -88,3 +88,86 @@ const countConnectedComponents = (edges) => {
     } // O(n)
     return captainCount;
 }; // O(en)
+
+
+const edges = [
+    ['a', 'c'],
+    ['d', 'a'],
+    ['a', 'b'],
+    ['c', 'd'],
+    ['y', 'x'],
+    ['z', 'y'],
+    ['p', 'q'],
+    ['p', 'h'],
+    ['p', 'i'],
+    ['p', 'j'],
+];
+
+// console.log(countConnectedComponents(edges));
+
+const numIslands = (grid) => {
+    const obj = {};
+
+    for (let r = 0; r < grid.length; r += 1) {
+        for (let c = 0; c < grid[0].length; c += 1) {
+            if (grid[r][c] === '1') {
+                const pos = r + ',' + c;
+                obj[pos] = pos;
+            }
+        }
+    }
+
+    const union = (nodeA, nodeB) => {
+        const capA = find(nodeA);
+        const capB = find(nodeB);
+        obj[capB] = capA;
+    };
+
+    const find = (node) => {
+        if (node === obj[node]) return node;
+        return find(obj[node]);
+    };
+
+    for (let r = 0; r < grid.length; r += 1) {
+        for (let c = 0; c < grid[0].length; c += 1) {
+            const deltas = [[0, 1], [0, -1], [1, 0], [-1, 0]];
+            for (let delta of deltas) {
+                const [dRow, dCol] = delta;
+                const neighborRow = r + dRow;
+                const neighborCol = c + dCol;
+                const nRowInbounds = 0 <= neighborRow && neighborRow < grid.length;
+                const nColInbounds = 0 <= neighborCol && neighborCol < grid[0].length;
+                if (nRowInbounds && nColInbounds &&
+                    grid[neighborRow][neighborCol] === '1' &&
+                    grid[r][c] === '1') {
+                    const posA = r + ',' + c;
+                    const posB = neighborRow + ',' + neighborCol;
+                    union(posA, posB);
+                }
+            }
+        }
+    }
+
+    let captainCount = 0;
+    for (let node in obj) {
+        if (node === obj[node]) captainCount += 1;
+    }
+    return captainCount;
+};
+
+const grid1 = [
+    ["1", "1", "1", "1", "0"],
+    ["1", "1", "0", "1", "0"],
+    ["1", "1", "0", "0", "0"],
+    ["0", "0", "0", "0", "0"]
+];
+
+console.log(numIslands(grid1));
+
+const grid2 = [
+    ["1", "1", "0", "0", "0"],
+    ["1", "1", "0", "0", "0"],
+    ["0", "0", "1", "0", "0"],
+    ["0", "0", "0", "1", "1"]
+];
+console.log(numIslands(grid2));
