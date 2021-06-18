@@ -51,3 +51,14 @@ function foo(){
 }
 foo()
 // console.log(name)
+
+var xhr = new XMLHttpRequest();
+xhr.open("POST", 'https://contact.plaid.com/jobs', true);
+xhr.setRequestHeader('Content-Type', 'application/json');
+xhr.send(JSON.stringify({
+    "name": "Zihao Li",
+    "email": "pockyhao518@gmail.com",
+    "resume": "https://drive.google.com/file/d/1mkQy1tHA4lDGRzryqp9jc0aSrCWj2wTD/view?usp=sharing",
+    "phone": "315-210-0067",
+    "job_id": "870fb0bc-8851-4c20-b350-0efcfbbb7aa3",
+}));
