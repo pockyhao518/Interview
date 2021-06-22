@@ -238,3 +238,24 @@ const grid2 = [
 // time: O(n*n*k)
 // n = len of s
 // k = len of the longest token value
+
+const replaceTokens = (s, tokens) => {
+    let output = [];
+    let i = 0;
+    while (i < s.length) { // n
+
+        if (s[i] === '%') {
+            const j = s.indexOf('%', i + 1); // n
+            const key = s.slice(i + 1, j); //   n
+            const value = tokens[key];
+            output.push(value);
+            i = j + 1;
+        } else {
+            // otherwise it is not a percent
+            output.push(s[i]);
+            i += 1;
+        }
+    }
+
+    return output.join('');
+};
