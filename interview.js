@@ -196,3 +196,45 @@ const grid2 = [
 ];
 // console.log(numIslands(grid2));
 
+// hello
+
+// Input: 
+//   path: '%USER%->%ROLE%/%ROOT%/desktop/%DATE%.txt'
+//   tokens: { USER: 'azablan', DATE: '06-15-2021', ROLE: 'dev', ROOT: 'main/tmp' }
+//
+// Output: 'azablan->dev/main/tmp/desktop/06-15-2021.txt'
+
+// n = length of the input s
+// k = maximal length of any token value
+// time: O(n*n)
+// const replaceTokens = (s, tokens) => {
+//   let output = s;
+//   for (let key in tokens) { // n
+//     const value = tokens[key];
+//     output = output.split('%' + key + '%').join(value); // n
+//   }
+//   return output;
+// };
+
+// s = %x%%x%%x%%x%%x%%x%%x%%x%%x%
+// tokens = {x: 'zzzzzzzzzzzzzzzzzzz...'}
+
+// const out = replaceTokens(
+//   '%USER%->%ROLE%/%ROOT%/desktop/%DATE%/%DATE%.txt',
+//   { USER: 'azablan', DATE: '06-15-2021', ROLE: 'dev', ROOT: 'main/tmp' }
+// );
+
+// console.log(out)
+// 'azablan->dev/main/tmp/desktop/06-15-2021/06-15-2021.txt'
+
+// ANNE:
+//  -loop thru all keys of the tokens obj
+//     -for each key do a s.replace(token, value)
+
+// KEVIN:
+//  - parse out every token
+//     -then replace each with token
+
+// time: O(n*n*k)
+// n = len of s
+// k = len of the longest token value
