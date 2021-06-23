@@ -259,3 +259,26 @@ const replaceTokens = (s, tokens) => {
 
     return output.join('');
 };
+
+// const replaceTokens  = (s, tokens) => {
+//   const split = s.split("%")
+
+//   for (let i = 0; i < split.length; i++) {
+//     if (split[i] in tokens) {
+//       split[i] = tokens[split[i]];
+//     }
+//   }
+
+//   return split.join("");
+// }
+
+// const out = replaceTokens(
+//   '%USER%->%ROLE%/%ROOT%desktop%DATE%/%desktop%.txt',
+//   { USER: 'azablan', DATE: '06-15-2021', ROLE: 'dev', ROOT: 'main/tmp',
+//     desktop: '!'
+//   });
+
+// 'azablan->dev/main/tmp/desktop/06-15-2021/!.txt'
+
+
+// console.log(out);
