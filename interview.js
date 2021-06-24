@@ -282,3 +282,84 @@ const replaceTokens = (s, tokens) => {
 
 
 // console.log(out);
+
+// Input: 
+//   path: '%USER%/%ROOT%/desktop/%DATE%.txt'
+//   tokens: { 
+//  USER: 'azablan->%ROLE%', 
+//  DATE: '06-15-2021', 
+//  ROLE: 'dev', 
+//  ROOT: 'main/tmp',
+//    A: 'one%B%%C%',
+//    B: 'two',
+//    C: 'three%D%',
+//    D: 'LOL'
+//   }
+//
+// Output: 'azablan->dev/main/tmp/desktop/06-15-2021.txt'
+//
+// 
+// s: '%A%potato'
+// out: 'onetwothreeLOLpotato'
+
+
+// A -> B -> C -> D
+const evaluateTokens = (tokens) => {
+    const evaluated = {};
+    for (let key in tokens) {
+        const evaluatedToken = depthFirstEval(tokens, key);
+        evaluated[key] = evaluatedToken;
+    }
+    return evaluated;
+};
+
+
+const depthFirstEval = (tokens, node) => {
+    let value = tokens[node];
+    let output = [];
+    let i = 0;
+    while (i < value.length) {
+
+        if (value[i] === '%') { // NEIGHBOR
+            const j = value.indexOf('%', i + 1);
+            const neighbor = value.slice(i + 1, j);
+            const neighborEval = depthFirstEval(tokens, neighbor);
+            output.push(neighborEval);
+            i = j + 1;
+        } else {
+            // otherwise it is not a percent
+            output.push(value[i]);
+            i += 1;
+        }
+    }
+
+    const answer = output.join('');
+    tokens[node] = answer;
+    return answer
+};
+
+const replaceTokens = (s, tokens) => {
+    let output = [];
+    let i = 0;
+    while (i < s.length) { // n
+
+        if (s[i] === '%') {
+            const j = s.indexOf('%', i + 1); // n
+            const key = s.slice(i + 1, j); //   n
+            const value = tokens[key];
+            output.push(value);
+            i = j + 1;
+        } else {
+            // otherwise it is not a percent
+            output.push(s[i]);
+            i += 1;
+        }
+    }
+
+    return output.join('');
+};
+
+const replaceNestedTokens = (s, tokens) => {
+    const evalTokens = evaluateTokens(tokens);
+    return replaceTokens(s, evalTokens);
+}
