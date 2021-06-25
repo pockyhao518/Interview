@@ -363,3 +363,73 @@ const replaceNestedTokens = (s, tokens) => {
     const evalTokens = evaluateTokens(tokens);
     return replaceTokens(s, evalTokens);
 }
+
+// Input: 
+const s = '%USER%/%ROOT%/desktop/%DATE%/%A%.txt'
+const tokens = {
+    USER: 'azablan->%ROLE%',
+    DATE: '06-15-2021',
+    ROLE: 'dev',
+    ROOT: 'main/tmp',
+    A: 'one%B%%C%',
+    B: 'two',
+    C: 'three%D%',
+    D: 'LOL'
+};
+
+console.log(replaceNestedTokens(s, tokens));
+
+
+// const tokens = { 
+//   A: 'one%B%',
+//   B: 'two%C%',
+//   C: 'three%D%',
+//   D: 'end'
+// };
+
+// console.log(evaluateTokens(tokens));
+
+
+var findPaths = function (m, n, maxMove, startRow, startColumn) {
+    let count = 0;
+    let pos = [[startRow, startColumn]]
+    for (let i = 0; i < maxMove; i++) {
+        let currentPos = [];
+        let visted = {};
+        while (pos.length > 0) {
+            let point = pos.shift();
+            if (visted[point] === undefined) {
+                let [r, c] = point;
+                let temp = 0;
+                let arr = [];
+                if (r + 1 < m && c < n) {
+                    arr.push([r + 1, c])
+                } else {
+                    temp += 1
+                }
+                if (c - 1 >= 0 && r < m) {
+                    arr.push([r, c - 1])
+                } else {
+                    temp += 1
+                }
+                if (c + 1 < n && r < m) {
+                    arr.push([r, c + 1])
+                } else {
+                    temp += 1
+                }
+                if (r - 1 >= 0 && c < n) {
+                    arr.push([r - 1, c])
+                } else {
+                    temp += 1
+                }
+                visted[point] = [temp, arr];
+                count += temp;
+            }else{
+                count += visted[point][0]
+                currentPos.concat(visted[point][1])
+            }
+        }
+        pos = currentPos;
+    }
+    return count;
+};
