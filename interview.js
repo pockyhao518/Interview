@@ -433,3 +433,33 @@ var findPaths = function (m, n, maxMove, startRow, startColumn) {
     }
     return count;
 };
+
+function Employee(id, importance, subordinates) {
+    this.id = id;
+    this.importance = importance;
+    this.subordinates = subordinates;
+}
+
+
+// e = # employees
+// Time: O(e)
+// Space: O(e)
+
+const GetImportance = (employees, id) => {
+    const employeeMap = {};
+
+    for (let employee of employees) {
+        employeeMap[employee.id] = employee;
+    }
+
+    return importanceSum(employeeMap, id);
+};
+
+const importanceSum = (employeeMap, id) => {
+    const rootEmployee = employeeMap[id];
+    let totalImportance = rootEmployee.importance;
+    for (let subordinateId of rootEmployee.subordinates) {
+        totalImportance += importanceSum(employeeMap, subordinateId);
+    }
+    return totalImportance;
+};
