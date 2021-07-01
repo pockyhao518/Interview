@@ -581,3 +581,91 @@ const importanceSum = (employeeMap, id) => {
 //   [10,8,  0,  5,   3],
 //   [2, 4,  1,  1,   3]
 // )); // 3
+
+// 
+//         A    B   C
+// pos:    2    6   17
+// speed:  9    3   2
+// 
+//         11   9   19
+
+// sorted decreasing:
+//         A    B   C
+// pos:    17   6   2
+// speed:  2    3   9
+
+//         19   9   9)
+
+const carFleet = (target, position, speed) => {
+    const cars = [];
+
+    for (let i = 0; i < position.length; i += 1) {
+        cars.push({
+            position: position[i],
+            speed: speed[i]
+        });
+    }
+
+    const sortedCars = cars.sort((car1, car2) => car2.position - car1.position);
+    let currentCars = sortedCars
+    console.log(currentCars);
+    let count = 0;
+    while (currentCars.length > 0) {
+        let newCars = [];
+
+        for (let i = 0; i < currentCars.length; i += 1) {
+            const car = currentCars[i];
+            const newPos = car.position + car.speed;
+            if (newPos >= target) {
+                count += 1;
+            } else {
+                const prevCar = newCars[newCars.length - 1];
+                if (prevCar === undefined || newPos < prevCar.position) {
+                    newCars.push({ position: newPos, speed: car.speed });
+                }
+            }
+        }
+        currentCars = newCars;
+        console.log(currentCars)
+    }
+
+    return count;
+};
+
+
+
+console.log(carFleet(12,
+    [10, 8, 0, 5, 3],
+    [2, 4, 1, 1, 3]
+)); // 3
+
+// console.log(carFleet(
+//   12,
+//   [4,0,5,3,1,2],
+//   [6,10,9,6,7,2]
+// )); // 4
+
+// 10
+// [0,2]
+// [1,1]
+
+//  A B
+// [0,2]
+// [1,1]
+
+
+//    B    A
+// p  2    0
+// s  1    1
+
+console.log(carFleet(
+    10,
+    [0, 2],
+    [1, 1]
+));
+
+// [
+//   { position: 11, speed: 9 },
+//   { position: 9, speed: 3 },
+//   { position: 19, speed: 2 },
+// ]
