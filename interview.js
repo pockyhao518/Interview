@@ -463,3 +463,121 @@ const importanceSum = (employeeMap, id) => {
     }
     return totalImportance;
 };
+//target: b
+
+      //      a
+      //     / \
+      //    2   c 
+      //   / \ / \
+      //  3  7 f g 
+      // /\
+      // 1 9
+
+// # 850
+// Input: target = 12, position = [10,8,0,5,3], speed = [2,4,1,1,3]
+// Output: 3
+// Explanation:
+// 1. The cars starting at 10 and 8 become a fleet, meeting each other at 12.
+// 2. The car starting at 0 doesn't catch up to any other car, so it is a fleet by itself.
+// 3. The cars starting at 5 and 3 become a fleet, meeting each other at 6.
+// Note that no other cars meet these fleets before the destination, so the answer is 3.
+
+
+// target = 12
+//   CAR:      A  B   C   D    E
+// position = [10,8,  0,  5,   3]
+// speed =    [2, 4,  1,  1,   3]
+
+// hour1 =    [12,12, 1,  6,   6]
+// hour2 =    [X, X,  2,  7,   7]
+// hour3 =    [X, X,  3,  8,   8]
+// hour4 =    [X, X,  4,  9,   9]
+// hour5 =    [X, X,  5,  10,  10]
+// hour6 =    [X, X,  6,  11,  11]
+// hour7 =    [X, X,  7,  12,  12]
+// hour8 =    [X, X,  8,  X,   X]
+
+// n = # cars
+// t = target
+// O(nlogn + t*n*?)
+
+// const carFleet = (target, position, speed) => {
+//     const cars = [];
+
+//     for (let i = 0; i < position.length; i += 1) {
+//       cars.push({
+//         position: position[i],
+//         speed: speed[i]
+//       });
+//     }
+
+//     const sortedCars = cars.sort((car1, car2) => car1.position - car2.position); 
+
+//     console.log(sortedCars);
+
+
+//     let currentCars = sortedCars
+
+
+//     let count = 0;
+//     while(currentCars.length > 0) {
+//       // move for 1 hr
+
+//       for (let car of currentCars) {
+//         car.position += car.speed;
+//       }
+
+//       // merge cars into same fleet // O(n)
+//       let newCars = [];
+//       let i = 0;
+//       let j = 0;
+//       while (j < currentCars.length) {
+//         // if (currentCars[j].position === currentCars[i].position) {
+//         if (currentCars[j].position <= currentCars[i].position) {
+//           j += 1;
+//         } else {
+//           // const newCar = { 
+//             // position: currentCars[i].position,  
+//           //   speed: currentCars[j - 1].speed
+//           // };
+//           const newCar = { 
+//             position: currentCars[j - 1].position,  
+//             speed: currentCars[j - 1].speed
+//           };
+//           if (newCar.position < target) {
+//             newCars.push(newCar);
+//           } else {
+//             count += 1;
+//           }
+//           i = j;
+//         }
+//       }
+//       // [
+//         // { position: 11, speed: 9 }, i 
+//       //   { position: 9, speed: 3 }, 
+//       //   { position: 19, speed: 2 }, j
+//       // ]
+
+//       // new : {pos: 9, speed: 3}
+//       const newCar = { 
+//         position: currentCars[i].position,  
+//         speed: currentCars[j - 1].speed
+//       };
+//       if (newCar.position < target) {
+//         newCars.push(newCar);
+//       } else {
+//         count += 1;
+//       }
+//       console.log(newCars);
+//       currentCars = newCars;
+//     }
+
+//     return count;
+
+// };
+
+
+// console.log(carFleet(12,
+//   [10,8,  0,  5,   3],
+//   [2, 4,  1,  1,   3]
+// )); // 3
