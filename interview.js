@@ -669,3 +669,28 @@ console.log(carFleet(
 //   { position: 9, speed: 3 },
 //   { position: 19, speed: 2 },
 // ]
+
+// n = size of positions
+// O(nlogn) time | O(n) space
+function carFleet(target, position, speeds) {
+    if (position.length <= 0) return 0;
+    const arr = position.map((pos, i) => ({ pos: pos, speed: speeds[i] }));
+    arr.sort((a, b) => b.pos - a.pos);
+    let prevTime = (target - arr[0].pos) / arr[0].speed;
+    let count = 1;
+
+    for (let i = 1; i < arr.length; i++) {
+        const { pos, speed } = arr[i];
+        const currTime = (target - pos) / speed;
+
+        if (currTime > prevTime) {                    // takes longer time, 2 fleets
+            count++;
+        }
+
+        prevTime = Math.max(currTime, prevTime);      // ensures take larger time if curr < prev
+    }
+
+    return count;
+}
+
+// console.log(carFleet(10, [10, 8], [2, 4]));
