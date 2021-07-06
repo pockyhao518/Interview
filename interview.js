@@ -734,3 +734,42 @@ const lexicalOrder = (word1, word2, order) => {
 
     return word1.length <= word2.length;
 };
+
+// console.log(lexicalOrder('app', 'apply')); // -> true
+// console.log(lexicalOrder('apply', 'app')); // -> false
+// console.log(lexicalOrder('banana', 'cat')); // -> true
+// console.log(lexicalOrder('caterpillar', 'category')); // -> false
+// console.log(lexicalOrder('cat', 'banana')); // -> false
+// console.log(lexicalOrder('app', 'apply')); // -> true
+// console.log(lexicalOrder('apply', 'apple')); // -> false
+
+// words = ["hello","leetcode"]
+// order = "hlabcdefgijkmnopqrstuvwxyz"
+// console.log(lexicalOrder('hello', 'leetcode', order)) // true
+// console.log(lexicalOrder('potato', 'porridge', order)) // false
+
+
+
+// const lexicalOrder = (word1, word2) => {
+//   const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+//   const longerLength = Math.max(word1.length, word2.length);
+//   for (let i = 0; i < longerLength; i += 1) {
+//     const pos1 = alphabet.indexOf(word1[i]);
+//     const pos2 = alphabet.indexOf(word2[i]);  
+
+//     if (pos1 < pos2) {
+//       return true;
+//     } else if (pos2 < pos1) {
+//       return false;
+//     }
+//   }
+// };
+
+
+// console.log(lexicalOrder('app', 'apply')); // -> true
+// console.log(lexicalOrder('apply', 'app')); // -> false
+// console.log(lexicalOrder('banana', 'cat')); // -> true
+// console.log(lexicalOrder('caterpillar', 'category')); // -> false
+// console.log(lexicalOrder('cat', 'banana')); // -> false
+// console.log(lexicalOrder('app', 'apply')); // -> true
+// console.log(lexicalOrder('apply', 'apple')); // -> false
