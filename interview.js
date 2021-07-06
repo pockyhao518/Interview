@@ -694,3 +694,43 @@ function carFleet(target, position, speeds) {
 }
 
 // console.log(carFleet(10, [10, 8], [2, 4]));
+
+// order: abcd....z
+
+// app__
+// apply
+
+// Alphabetical order: lexicographical/lexical order
+
+// n = # words 
+// k = length of the longest word
+// Time: O(n*k)
+// Space: O(1)
+const isAlienSorted = (words, order) => {
+    for (let i = 0; i < words.length - 1; i += 1) {
+        if (lexicalOrder(words[i], words[i + 1], order) === false) {
+            return false;
+        }
+    }
+    return true;
+};
+
+// n = # words 
+// k = length of the longest word
+// Time: O(k)
+// Space: O(1)
+const lexicalOrder = (word1, word2, order) => {
+    const shorterLength = Math.min(word1.length, word2.length);
+    for (let i = 0; i < shorterLength; i += 1) {
+        const pos1 = order.indexOf(word1[i]);// O(1)
+        const pos2 = order.indexOf(word2[i]);// O(1)
+
+        if (pos1 < pos2) {
+            return true;
+        } else if (pos2 < pos1) {
+            return false;
+        }
+    }
+
+    return word1.length <= word2.length;
+};
