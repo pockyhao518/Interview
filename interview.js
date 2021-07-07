@@ -773,3 +773,46 @@ const lexicalOrder = (word1, word2, order) => {
 // console.log(lexicalOrder('cat', 'banana')); // -> false
 // console.log(lexicalOrder('app', 'apply')); // -> true
 // console.log(lexicalOrder('apply', 'apple')); // -> false
+
+// Input: words = [
+// "word",
+// "world",
+// "row"]
+
+// order = "worldabcefghijkmnpqstuvxyz"
+
+// FALSE
+
+// [1, 5, 10, 8, 19, 22]
+
+// n = length of string
+// Time: O(n^2))
+// Space: O(n))
+
+// brute force
+// const numSplits = function(s) {
+//   let count = 0;
+//   for (let i = 1; i < s.length; i += 1) { // n
+//     const left = s.slice(0, i); // n
+//     const right = s.slice(i);
+//     const leftSet = new Set(left);
+//     const rightSet = new Set(right);
+//     if (leftSet.size === rightSet.size) count += 1
+//   }
+
+//   return count;
+// };
+
+// //
+// const numSplits = function(s) {
+//   let count = 0;
+//   for (let i = 1; i < s.length; i += 1) { // n
+//     const left = s.slice(0, i); // n
+//     const right = s.slice(i);
+//     const leftSet = new Set(left);
+//     const rightSet = new Set(right);
+//     if (leftSet.size === rightSet.size) count += 1
+//   }
+
+//   return count;
+// };
