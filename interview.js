@@ -816,3 +816,51 @@ const lexicalOrder = (word1, word2, order) => {
 
 //   return count;
 // };
+
+// const numSplits = function(s) {
+//   let count = 0;
+//   const set = new Set(s);
+//   const totalSize = set.size;
+//   for (let i = 1; i < s.length; i += 1) { 
+//     const left = s.slice(0, i); // n
+
+//   }
+
+
+
+// };
+
+// n * ( n / 2)
+
+// console.log(numSplits("aacaba")); // 2
+// ("aac", "aba")
+// ("aaca", "ba")
+
+
+//      "a a c a b a"
+//                ^  
+
+// leftset              rightSet
+// {a: 3, c: 1, b: 1 }              {a: 1}
+
+
+
+// count = 2
+
+
+const numSplits = function (s) {
+    let count = 0;
+    const left = new Set();
+    const right = charCount(s); // n
+    let rightSize = Object.keys(right).length;
+    for (let i = 0; i < s.length; i += 1) {
+        const char = s[i];
+        left.add(char);
+        right[char] -= 1;
+        if (right[char] === 0) rightSize -= 1
+        if (left.size === rightSize) count += 1
+    }
+    return count;
+};
+// 'abcdef'
+// a abcdef
