@@ -864,3 +864,39 @@ const numSplits = function (s) {
 };
 // 'abcdef'
 // a abcdef
+
+const charCount = (s) => {
+    let count = {};
+    for (let char of s) {
+        if (!(char in count)) count[char] = 0;
+        count[char] += 1;
+    }
+    return count;
+};
+
+console.log(charCount('potato'));
+
+function numSplits(s) {
+    let set = new Set();
+    const left = new Array(s.length);
+
+    for (let i = 0; i < s.length; i++) {
+        set.add(s[i]);
+        left[i] = set.size;
+    }
+
+    let count = 0;
+    set = new Set();
+
+    for (let i = s.length - 1; i >= 0; i--) {
+        const right = set.size;
+
+        if (right === left[i]) {
+            count++;
+        }
+
+        set.add(s[i]);
+    }
+
+    return count;
+}
