@@ -900,3 +900,33 @@ function numSplits(s) {
 
     return count;
 }
+
+// heyyyy programmmersss
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+
+// function ListNode(val, next) {
+//     this.val = (val === undefined ? 0 : val)
+//     this.next = (next === undefined ? null : next)
+// }
+
+class ListNode {
+    constructor(val, next) {
+        this.val = (val === undefined ? 0 : val)
+        this.next = (next === undefined ? null : next)
+    }
+}
+
+const a = new ListNode('a');
+const b = new ListNode('b');
+const c = new ListNode('c');
+
+a.next = b
+b.next = c
+
