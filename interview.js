@@ -930,3 +930,41 @@ const c = new ListNode('c');
 a.next = b
 b.next = c
 
+//  even_head = X -> b -> d -> null
+//                        e_tail
+
+//  odd_head = X -> a -> c -> e
+//                            o_tail
+
+//    1    2    3    4    5
+//    a -> b -> c -> d -> e -> NULL
+//                       cur         
+
+
+
+const oddEvenList = (head) => {
+    let evenHead = new ListNode();
+    let oddHead = new ListNode();
+
+    let evenTail = evenHead;
+    let oddTail = oddHead;
+
+    let current = head;
+    let i = 1;
+    while (current !== null) {
+        if (i % 2 === 0) {
+            evenTail.next = current;
+            evenTail = evenTail.next;
+        } else {
+            oddTail.next = current;
+            oddTail = oddTail.next;
+        }
+
+        current = current.next;
+        i += 1;
+    }
+
+    oddTail.next = evenHead.next;
+    evenTail.next = null;
+    return oddHead.next;
+};
