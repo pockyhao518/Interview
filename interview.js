@@ -968,3 +968,93 @@ const oddEvenList = (head) => {
     evenTail.next = null;
     return oddHead.next;
 };
+
+//  even_head = X -> 
+//                         
+
+//  odd_head - X -> a -> c -> b -> d
+//                        o_tail
+
+
+// zihao
+//     create two arrays
+
+// anne^
+//     create two dummy nodes
+
+oddEvenList(a);
+// a
+// b
+// c
+
+var partition = function (head, x) {
+    let lessHead = new ListNode();
+    let moreHead = new ListNode();
+
+    let lessTail = lessHead;
+    let moreTail = moreHead;
+
+    let current = head;
+    while (current !== null) {
+        if (current.val < x) {
+            lessTail.next = current;
+            lessTail = lessTail.next;
+        } else {
+            moreTail.next = current;
+            moreTail = moreTail.next;
+        }
+
+        current = current.next;
+    }
+
+    moreTail.next = evenHead.next;
+    evenTail.next = null;
+    return moreHead.next;
+};
+
+// 1000000000
+// 1000000000
+// [2]
+// [2]
+
+// [1,4,7,2,5,2], x = 3
+
+// [1,2,2,4,7,5]
+
+const maxArea = function (h, w, horizontalCuts, verticalCuts) {
+    horizontalCuts.sort();
+    verticalCuts.sort();
+    horizontalCuts.unshift(0);
+    horizontalCuts.push(h);
+    verticalCuts.unshift(0);
+    verticalCuts.push(w);
+
+    const maxWidth = maxAdjacentDiff(verticalCuts);
+    const maxHeight = maxAdjacentDiff(horizontalCuts);
+    return maxWidth * maxHeight;
+};
+
+const maxAdjacentDiff = (array) => {
+    let max = 0;
+    for (let i = 0; i < array.length - 1; i += 1) {
+        const current = array[i];
+        const next = array[i + 1];
+        const diff = next - current;
+        if (diff > max) max = diff;
+    }
+
+    return max;
+}
+
+// console.log(maxAdjacentDiff([ 0, 1, 2, 4, 5, 20 ])); // 2
+
+h = 5
+w = 4
+horizontalCuts = [1, 2, 4]
+verticalCuts = [1, 3];
+
+// // [0, 1, 3,4]
+
+console.log(maxArea(h, w, horizontalCuts, verticalCuts));
+
+// // [1,2,2,4,3,5]
